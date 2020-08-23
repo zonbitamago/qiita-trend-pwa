@@ -19,12 +19,12 @@ const Header = () => {
         </Icon>
       </Link>
       <Menu>
-        <Link to="/">
+        <Link to="/" title="home">
           <MenuIcon>
             <FontAwesomeIcon icon={faChartLine} size="1x" />
           </MenuIcon>
         </Link>
-        <Link to="/graph">
+        <Link to="/graph" title="graph">
           <MenuIcon>
             <FontAwesomeIcon icon={faChartPie} size="1x" />
           </MenuIcon>
@@ -33,6 +33,7 @@ const Header = () => {
           href="https://github.com/zonbitamago/qiita-trend-pwa"
           target="_blank"
           rel="noopener noreferrer"
+          title="github"
         >
           <MenuIcon>
             <FontAwesomeIcon icon={faGithub} size="1x" />
