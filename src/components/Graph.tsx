@@ -5,7 +5,6 @@ import { faChartPie } from "@fortawesome/free-solid-svg-icons";
 import * as DateUtil from "./util/DateUtil";
 import * as FetchUtil from "./util/FetchUtil";
 import ReactHighcharts from "react-highcharts";
-import { stringify } from "querystring";
 
 interface FetchData {
   created_at: string;

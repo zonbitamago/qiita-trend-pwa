@@ -11,9 +11,10 @@ const Header = () => {
       <Link to="/">
         <Icon>
           <img
-            src="icon-72x72.png"
+            src="icon-384x384.png"
             className="header_imageStyle"
             alt="Qiita-trend-PWA"
+            height="72"
           />
         </Icon>
       </Link>
