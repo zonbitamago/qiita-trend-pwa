@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import styled from "styled-components";
 import Header from "./components/Header";
+import Loading from "./components/Loading";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Main = lazy(() => import("./components/Main"));
@@ -12,7 +13,7 @@ function App() {
       <Router>
         <Header />
         <MainContainer>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/graph">
                 <Graph />
