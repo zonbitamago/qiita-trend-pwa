@@ -1,5 +1,5 @@
 import * as localforage from "localforage";
-import moment from "moment";
+import dayjs from "dayjs";
 import fetch from "isomorphic-unfetch";
 import * as DateUtil from "./DateUtil";
 
@@ -16,8 +16,8 @@ export const fetchData = async function () {
 
   if (
     localRes == null ||
-    moment(localRes.created).isBefore(
-      DateUtil.momentJA().subtract("15", "minutes")
+    dayjs(localRes.created).isBefore(
+      DateUtil.dayjsJA().subtract("15", "minutes")
     )
   ) {
     const url = "https://qiita-trend-web-scraping.firebaseapp.com/";
@@ -41,7 +41,7 @@ export const fetchData = async function () {
     }
     myLF.setItem("res-api", {
       data: data,
-      created: DateUtil.momentJA().format(),
+      created: DateUtil.dayjsJA().format(),
     });
   } else {
     const dataByLF = await myLF.getItem("res-api");

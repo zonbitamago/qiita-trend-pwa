@@ -1,17 +1,11 @@
-import moment from "moment";
+import dayjs from "dayjs";
+import "dayjs/locale/ja";
 
-export const momentJA = () => {
-  return moment()
-    .utc()
-    .add(9, "hours");
+export const dayjsJA = () => {
+  dayjs.locale("ja");
+  return dayjs();
 };
 
-export const oneDayAgo = momentJA()
-  .subtract(1, "days")
-  .format("YYYY-MM-DD");
-export const twoDaysAgo = momentJA()
-  .subtract(2, "days")
-  .format("YYYY-MM-DD");
-export const oneWeekAgo = momentJA()
-  .subtract(7, "days")
-  .format("YYYY-MM-DD");
+export const oneDayAgo = dayjsJA().subtract(1, "days").format("YYYY-MM-DD");
+export const twoDaysAgo = dayjsJA().subtract(2, "days").format("YYYY-MM-DD");
+export const oneWeekAgo = dayjsJA().subtract(7, "days").format("YYYY-MM-DD");
