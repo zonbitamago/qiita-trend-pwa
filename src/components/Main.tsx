@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import * as DateUtil from "./util/DateUtil";
 import * as FetchUtil from "./util/FetchUtil";
+import Loading from "./Loading";
 
 interface FetchData {
   created_at: string;
@@ -34,6 +35,29 @@ const Main = () => {
     fetchData();
   }, []);
 
+  const renderItems = (data: FetchData[]) => {
+    if (data.length === 0) {
+      return <Loading />;
+    } else {
+      return data.map((elem, idx) => {
+        return (
+          <Item key={idx}>
+            <ItemIndex>No.{idx + 1}</ItemIndex>
+            <ItemTitle>
+              <a href={elem.url} target="_blank" rel="noopener noreferrer">
+                {elem.title}
+              </a>
+              ({elem.likes_count}いいね)
+              <br />
+              <br />
+              by {elem.user.id}
+            </ItemTitle>
+          </Item>
+        );
+      });
+    }
+  };
+
   return (
     <div>
       <H1>
@@ -44,47 +68,13 @@ const Main = () => {
       </H1>
       <H2>Dailyランキング</H2>
       <H2>{oneDayAgo}</H2>
-      <ItemContainer>
-        {daily.map((elem, idx) => {
-          return (
-            <Item key={idx}>
-              <ItemIndex>No.{idx + 1}</ItemIndex>
-              <ItemTitle>
-                <a href={elem.url} target="_blank" rel="noopener noreferrer">
-                  {elem.title}
-                </a>
-                ({elem.likes_count}いいね)
-                <br />
-                <br />
-                by {elem.user.id}
-              </ItemTitle>
-            </Item>
-          );
-        })}
-      </ItemContainer>
+      <ItemContainer>{renderItems(daily)}</ItemContainer>
 
       <H2>Weeklyランキング</H2>
       <H2>
         {oneWeekAgo} 〜 {oneDayAgo}
       </H2>
-      <ItemContainer>
-        {weekly.map((elem, idx) => {
-          return (
-            <Item key={idx}>
-              <ItemIndex>No.{idx + 1}</ItemIndex>
-              <ItemTitle>
-                <a href={elem.url} target="_blank" rel="noopener noreferrer">
-                  {elem.title}
-                </a>
-                ({elem.likes_count}いいね)
-                <br />
-                <br />
-                by {elem.user.id}
-              </ItemTitle>
-            </Item>
-          );
-        })}
-      </ItemContainer>
+      <ItemContainer>{renderItems(weekly)}</ItemContainer>
     </div>
   );
 };
